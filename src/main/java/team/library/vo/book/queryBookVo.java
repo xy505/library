@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 分页查询书籍
  */
 @Data
-public class bookQueryVo extends pageQuery {
+public class queryBookVo extends pageQuery {
     //分类
     private ArrayList<Integer> sorts;
 

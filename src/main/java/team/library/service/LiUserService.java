@@ -1,8 +1,11 @@
 package team.library.service;
 
+import team.library.common.R;
 import team.library.entity.LiUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import team.library.vo.pageQuery;
 import team.library.vo.user.blackUserVo;
+import team.library.vo.user.deleteUserVo;
 import team.library.vo.user.editUserVo;
 import team.library.vo.user.registerVo;
 
@@ -20,7 +23,7 @@ public interface LiUserService extends IService<LiUser> {
     /**
      * 查询所有用户
      */
-    List<LiUser> getAllUser();
+    R getAllUser(pageQuery page);
 
     /**
      *查询用户是否存在
@@ -30,7 +33,7 @@ public interface LiUserService extends IService<LiUser> {
     /**
      *注册用户
      */
-    LiUser registerUser(registerVo vo);
+    R registerUser(registerVo vo);
 
     /**
      *编辑用户信息
@@ -40,13 +43,17 @@ public interface LiUserService extends IService<LiUser> {
     /**
      * 加入黑名单
      */
-    void joinBlacklist(blackUserVo vo);
+    R joinBlacklist(blackUserVo vo);
 
     /**
      * 查询所有黑名单里的用户
      */
-    List<LiUser> getUserFromBlack();
+    R getUserFromBlack(pageQuery pageQuery);
 
+    /**
+     * 注销用户
+     */
+    R deleteUser(deleteUserVo vo);
 
 
 

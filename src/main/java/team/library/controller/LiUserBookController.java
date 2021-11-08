@@ -1,6 +1,7 @@
 package team.library.controller;
 
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import team.library.common.R;
 import team.library.service.LiUserBookService;
-import team.library.vo.book.bookBorrowVo;
+import team.library.vo.book.borrowBookVo;
 
 /**
  * <p>
@@ -32,7 +33,8 @@ public class LiUserBookController {
      * @return
      */
     @PostMapping("/borrowBook")
-    public R borrowBook(@RequestBody bookBorrowVo vo){
+    @ApiOperation(value = "用户借书", notes = "")
+    public R borrowBook(@RequestBody borrowBookVo vo){
         try {
             R result = liUserBookService.borrowBook(vo);
             return result;
@@ -42,7 +44,8 @@ public class LiUserBookController {
     }
 
     @PostMapping("/returnBook")
-    public R returnBook(@RequestBody bookBorrowVo vo){
+    @ApiOperation(value = "用户还书", notes = "")
+    public R returnBook(@RequestBody borrowBookVo vo){
         try {
             R result = liUserBookService.returnBook(vo);
             return result;
@@ -51,5 +54,15 @@ public class LiUserBookController {
         }
     }
 
+    @PostMapping("/queryRecord")
+    @ApiOperation(value = "用户还书", notes = "")
+    public R queryRecord(@RequestBody borrowBookVo vo){
+        try {
+            R result = liUserBookService.queryAllItem(vo);
+            return result;
+        }catch (Exception e){
+            return R.error().message("系统出错");
+        }
+    }
 }
 

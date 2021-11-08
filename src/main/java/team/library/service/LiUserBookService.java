@@ -3,7 +3,7 @@ package team.library.service;
 import team.library.common.R;
 import team.library.entity.LiUserBook;
 import com.baomidou.mybatisplus.extension.service.IService;
-import team.library.vo.book.bookBorrowVo;
+import team.library.vo.book.borrowBookVo;
 
 /**
  * <p>
@@ -19,18 +19,25 @@ public interface LiUserBookService extends IService<LiUserBook> {
      * @param bookBorrowVo
      * @return
      */
-    public R borrowBook(bookBorrowVo bookBorrowVo);
+    public R borrowBook(borrowBookVo bookBorrowVo);
 
     /**
      * 用户还书
      */
-    public R returnBook(bookBorrowVo bookBorrowVo);
+    public R returnBook(borrowBookVo bookBorrowVo);
 
     /**
-     * 查询借阅单
+     * 查询特定借阅单
      * @param bookBorrowVo
      * @return
      */
-    public R queryItem(bookBorrowVo bookBorrowVo);
+    public LiUserBook queryItem(borrowBookVo bookBorrowVo);
+
+    /**
+     * 查询所有借阅单
+     * @param borrowBookVo
+     * @return
+     */
+    public R queryAllItem(borrowBookVo borrowBookVo);
 
 }

@@ -15,6 +15,7 @@ import team.library.entity.LiUser;
 import team.library.service.EmailService;
 import team.library.service.LiUserService;
 import team.library.vo.user.blackUserVo;
+import team.library.vo.user.deleteUserVo;
 import team.library.vo.user.editUserVo;
 import team.library.vo.user.registerVo;
 
@@ -84,8 +85,8 @@ public class LiUserTest {
      */
     @Test
     public void getFromBlack(){
-        List<LiUser> userFromBlack = liUserService.getUserFromBlack();
-        System.out.println(userFromBlack);
+//        List<LiUser> userFromBlack = liUserService.getUserFromBlack();
+//        System.out.println(userFromBlack);
     }
 
     /**
@@ -106,5 +107,24 @@ public class LiUserTest {
             System.out.println(liUser);
         }
 
+    }
+
+    /**
+     * 注销用户
+     */
+    @Test
+    public void delete(){
+        deleteUserVo vo = new deleteUserVo();
+        vo.setId(1);
+        liUserService.deleteUser(vo);
+    }
+
+    /**
+     * 查询所有用户
+     */
+    @Test
+    public void query(){
+//        List<LiUser> allUser = liUserService.getAllUser();
+//        System.out.println(allUser);
     }
 }

@@ -1,6 +1,7 @@
 package team.library.controller;
 
 
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import team.library.common.R;
 import team.library.service.LiBookService;
-import team.library.vo.book.bookQueryVo;
+import team.library.vo.book.addBookVo;
+import team.library.vo.book.deleteBookVo;
+import team.library.vo.book.editBookVo;
+import team.library.vo.book.queryBookVo;
 
 /**
  * <p>
@@ -34,7 +38,8 @@ public class LiBookController {
      * 条件查询书籍
      */
     @PostMapping("/queryBook")
-    public R queryBook(@RequestBody bookQueryVo vo){
+    @ApiOperation(value = "查询书籍", notes = "")
+    public R queryBook(@RequestBody queryBookVo vo){
         try{
             R result = liBookService.queryBook(vo);
             return result;
@@ -44,6 +49,54 @@ public class LiBookController {
             return R.error().message("查询失败");
         }
 
+    }
+
+    /**
+     * 添加书籍
+     */
+    @PostMapping("/AddBook")
+    @ApiOperation(value = "添加书籍", notes = "")
+    public R addBook(@RequestBody addBookVo vo){
+        try {
+            R result = liBookService.addBook(vo);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("添加书籍失败");
+            return R.error().message("添加失败");
+        }
+    }
+
+    /**
+     * 编辑书籍
+     */
+    @PostMapping("/EditBook")
+    @ApiOperation(value = "编辑书籍", notes = "")
+    public R addBook(@RequestBody editBookVo vo){
+        try {
+            R result = liBookService.editBook(vo);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("编辑书籍失败");
+            return R.error().message("编辑失败");
+        }
+    }
+
+    /**
+     * 删除书籍
+     */
+    @PostMapping("/DeleteBook")
+    @ApiOperation(value = "删除书籍", notes = "")
+    public R deleteBook(@RequestBody deleteBookVo vo){
+        try {
+            R result = liBookService.deleteBook(vo);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("删除书籍失败");
+            return R.error().message("删除失败");
+        }
     }
 }
 
