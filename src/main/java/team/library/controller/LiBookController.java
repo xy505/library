@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import team.library.common.R;
 import team.library.service.LiBookService;
-import team.library.vo.book.addBookVo;
-import team.library.vo.book.deleteBookVo;
-import team.library.vo.book.editBookVo;
-import team.library.vo.book.queryBookVo;
+import team.library.vo.book.*;
 
 /**
  * <p>
@@ -91,6 +88,22 @@ public class LiBookController {
     public R deleteBook(@RequestBody deleteBookVo vo){
         try {
             R result = liBookService.deleteBook(vo);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("删除书籍失败");
+            return R.error().message("删除失败");
+        }
+    }
+
+    /**
+     * 查询用户捐赠书籍信息
+     */
+    @PostMapping("/queryUserBook")
+    @ApiOperation(value = "查询用户捐赠的书籍", notes = "")
+    public R queryUserBook(@RequestBody donateBookVo vo){
+        try {
+            R result = liBookService.queryUserBook(vo);
             return result;
         }catch (Exception e){
             e.printStackTrace();
