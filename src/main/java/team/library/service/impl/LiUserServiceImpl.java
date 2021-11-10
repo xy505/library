@@ -130,6 +130,9 @@ public class LiUserServiceImpl extends ServiceImpl<LiUserMapper, LiUser> impleme
     public R joinBlacklist(blackUserVo vo) {
         LiUser liUser = baseMapper.selectById(vo.getId());
         if (liUser!=null){
+            if (liUser.getIdentity()==1){
+                return R.error().message("不能加管理员用户加入黑名单");
+            }
             liUser.setIsDisabled(true);
         }
         int result = baseMapper.updateById(liUser);
@@ -161,6 +164,17 @@ public class LiUserServiceImpl extends ServiceImpl<LiUserMapper, LiUser> impleme
         }else {
             return R.ok().message("注销成功");
         }
+    }
+
+    @Override
+    public String getById(Integer id) {
+        QueryWrapper<LiUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",id);
+        LiUser user = this.baseMapper.selectOne(wrapper);
+        if (user!=null){
+            return user.getNickName();
+        }
+        return "黑名单用户";
     }
 
 

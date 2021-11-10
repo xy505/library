@@ -1,5 +1,6 @@
 package team.library.service;
 
+import io.swagger.models.auth.In;
 import team.library.common.R;
 import team.library.entity.LiUser;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -54,6 +55,12 @@ public interface LiUserService extends IService<LiUser> {
      * 注销用户
      */
     R deleteUser(deleteUserVo vo);
+
+
+    /**
+     * 根据用户id查询到名字
+     */
+    String getById(Integer id);
 
 
 

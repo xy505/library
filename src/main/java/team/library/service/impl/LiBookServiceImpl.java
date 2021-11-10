@@ -11,10 +11,7 @@ import team.library.mapper.LiBookMapper;
 import team.library.service.LiBookService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import team.library.vo.book.addBookVo;
-import team.library.vo.book.deleteBookVo;
-import team.library.vo.book.editBookVo;
-import team.library.vo.book.queryBookVo;
+import team.library.vo.book.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -73,7 +70,7 @@ public class LiBookServiceImpl extends ServiceImpl<LiBookMapper, LiBook> impleme
         }
         IPage<LiBook> result = this.page(page, wrapper);
         System.out.println(result);
-        return R.ok().data("分页查询结果",result);
+        return R.ok().data("result",result);
     }
 
     @Override
@@ -186,6 +183,23 @@ public class LiBookServiceImpl extends ServiceImpl<LiBookMapper, LiBook> impleme
             return R.error().message("删除失败");
         }
         return R.ok().message("删除成功");
+    }
+
+    @Override
+    public R queryUserBook(donateBookVo vo) {
+        String userName = vo.getUserName();
+        QueryWrapper<LiBook> wrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(vo.getUserName())){
+            //前台查询用的
+            wrapper.eq("donor",userName);
+        }else {
+            //后台查询用的
+            wrapper.ne("donor","");
+            wrapper.last("order by gmt_create desc");
+        }
+        Page<LiBook> liBookPage = new Page<>(vo.getPage(), vo.getLimit());
+        IPage<LiBook> page = this.page(liBookPage, wrapper);
+        return R.ok().data("book",page);
     }
 
 

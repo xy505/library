@@ -3,10 +3,8 @@ package team.library.service;
 import team.library.common.R;
 import team.library.entity.LiBook;
 import com.baomidou.mybatisplus.extension.service.IService;
-import team.library.vo.book.addBookVo;
-import team.library.vo.book.deleteBookVo;
-import team.library.vo.book.editBookVo;
-import team.library.vo.book.queryBookVo;
+import team.library.vo.book.*;
+import team.library.vo.pageQuery;
 
 /**
  * <p>
@@ -45,4 +43,9 @@ public interface LiBookService extends IService<LiBook> {
      * @return
      */
     public R deleteBook(deleteBookVo vo);
+
+    /**
+     * 查询用户捐赠图书的情况
+     */
+    public R queryUserBook(donateBookVo vo);
 }
