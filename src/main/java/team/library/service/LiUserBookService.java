@@ -4,6 +4,7 @@ import team.library.common.R;
 import team.library.entity.LiUserBook;
 import com.baomidou.mybatisplus.extension.service.IService;
 import team.library.vo.book.borrowBookVo;
+import team.library.vo.pageQuery;
 
 /**
  * <p>
@@ -39,5 +40,15 @@ public interface LiUserBookService extends IService<LiUserBook> {
      * @return
      */
     public R queryAllItem(borrowBookVo borrowBookVo);
+
+    /**
+     * 定时更新借阅时间
+     */
+    public void updateBorrowIngTime();
+
+    /**
+     * 查看哪些人逾期还没还书
+     */
+    public R getOverTime(pageQuery pageQuery);
 
 }

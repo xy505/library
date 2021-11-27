@@ -55,7 +55,7 @@ public class LiBookServiceImpl extends ServiceImpl<LiBookMapper, LiBook> impleme
                 if(s.equals("")){
                     s+=i+"";
                 }else{
-                    s+=","+i;
+                    s+=",%"+i;
                 }
 
             }
@@ -200,6 +200,12 @@ public class LiBookServiceImpl extends ServiceImpl<LiBookMapper, LiBook> impleme
         Page<LiBook> liBookPage = new Page<>(vo.getPage(), vo.getLimit());
         IPage<LiBook> page = this.page(liBookPage, wrapper);
         return R.ok().data("book",page);
+    }
+
+    //根据id查询书名
+    public String getBookNameById(Integer id){
+        LiBook liBook = this.baseMapper.selectById(id);
+        return liBook.getBookName();
     }
 
 

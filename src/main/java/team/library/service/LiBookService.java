@@ -48,4 +48,9 @@ public interface LiBookService extends IService<LiBook> {
      * 查询用户捐赠图书的情况
      */
     public R queryUserBook(donateBookVo vo);
+
+    /**
+     *获得书名
+     */
+    public String getBookNameById(Integer id);
 }

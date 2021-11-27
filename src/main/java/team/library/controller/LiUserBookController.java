@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import team.library.common.R;
 import team.library.service.LiUserBookService;
 import team.library.vo.book.borrowBookVo;
+import team.library.vo.pageQuery;
 
 /**
  * <p>
@@ -55,10 +56,20 @@ public class LiUserBookController {
     }
 
     @PostMapping("/queryRecord")
-    @ApiOperation(value = "用户还书", notes = "")
+    @ApiOperation(value = "查询记录", notes = "")
     public R queryRecord(@RequestBody borrowBookVo vo){
         try {
             R result = liUserBookService.queryAllItem(vo);
+            return result;
+        }catch (Exception e){
+            return R.error().message("系统出错");
+        }
+    }
+    @PostMapping("/queryOverTimeRecord")
+    @ApiOperation(value = "查询逾期记录", notes = "")
+    public R queryOverTimeRecord(@RequestBody pageQuery pageQuery){
+        try {
+            R result = liUserBookService.getOverTime(pageQuery);
             return result;
         }catch (Exception e){
             return R.error().message("系统出错");

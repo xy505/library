@@ -56,5 +56,10 @@ public class LiUserBook implements Serializable {
     @ApiModelProperty(value = "是否归还 1（true）已归还，  0（false）未归还")
     private Boolean isReturn;
 
+    @TableField(exist = false)
+    private String nickName;
+
+    @TableField(exist = false)
+    private String bookName;
 
 }

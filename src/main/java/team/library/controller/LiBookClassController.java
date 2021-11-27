@@ -32,7 +32,7 @@ public class LiBookClassController {
     @GetMapping("/getAllClass")
     public R getAllClass(){
         ArrayList<LiBookClass> allClass = liBookClassService.getAllClass();
-        return R.ok().data("所有分类信息",allClass);
+        return R.ok().data("class",allClass);
     }
 }
 
