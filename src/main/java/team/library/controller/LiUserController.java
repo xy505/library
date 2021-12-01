@@ -58,8 +58,9 @@ public class LiUserController {
         if (user!=null){
             //生成token
             String jwtToken = JwtUtils.getJwtToken(user.getId().toString(), user.getNickName());
+
             //返回token
-            return R.ok().data("token",jwtToken);
+            return R.ok().data("user",user);
         }else {
             return R.error().data("message","用户不存在");
         }
